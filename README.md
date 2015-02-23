@@ -26,8 +26,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1 "\n@%s")\[\033[00m\]\$ '
-   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\[\033[38;5;202m\]$(__git_repo)\[\033[01;31m\]$(__git_ps1 "@%s")\[\033[38;5;202m\]\[\033[00m\]\$ '
+   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1 "\n@%s")\[\033[00m\]\$ '
 else
    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -45,5 +44,6 @@ esac
 
 In your ~/.bashrc add the following line after the previous lines:
 <pre>
+# Overwrites PS1
 source PATH_TO_THIS_GIT_REPO/bashrc_ext
 </pre>
