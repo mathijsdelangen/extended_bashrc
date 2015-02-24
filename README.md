@@ -1,5 +1,5 @@
 # extended_bashrc
-This bashrc shows on which repo at which branch I am working
+This bashrc shows on which repo I am working (and at which branch).
 
 To use this extension, alter your .bashrc: 
 
