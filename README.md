@@ -5,6 +5,9 @@ To use this extension, run the following:
 <pre>
 curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
 </pre>
+or copy the file .git-prompt.sh from this repo to ~/
+
+Copy the file bashrc_ext to ~/bashrc_ext
 
 Then, alter your .bashrc:
 
@@ -50,6 +53,6 @@ esac
 In your ~/.bashrc add the following line after the previous lines:
 <pre>
 # Overwrites PS1
-source PATH_TO_THIS_GIT_REPO/.git-prompt.sh
-source PATH_TO_THIS_GIT_REPO/bashrc_ext
+source ~/.git-prompt.sh
+source ~/bashrc_ext
 </pre>
