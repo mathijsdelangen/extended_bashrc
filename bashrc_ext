@@ -1,12 +1,14 @@
 ### Repo Naming
 
+source ~/.git-prompt.sh
+
 # Retrieve the current git repository
 function __git_repo {
   git remote -v 2> /dev/null | grep push | sed s/\\.git.*/""/g | sed s/".*\/"//g
 }
 
 # Set the colors of PS1 and the name of the current repo/branch
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[38;5;202m\]@$(__git_repo)\[\033[01;31m\]$(__git_ps1 "@%s")\n\[\033[38;5;202m\]\[\033[00m\]\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1 "@%s")\n\[\033[38;5;202m\]\[\033[00m\]\$ '
 
 ### Useful functions
 

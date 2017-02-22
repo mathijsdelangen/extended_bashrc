@@ -1,7 +1,12 @@
 # extended_bashrc
 This bashrc shows on which repo I am working (and at which branch).
 
-To use this extension, alter your .bashrc: 
+To use this extension, run the following:
+<pre>
+curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
+</pre>
+
+Then, alter your .bashrc:
 
 <pre>
 vim ~/.bashrc
