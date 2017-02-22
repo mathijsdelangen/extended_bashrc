@@ -45,5 +45,6 @@ esac
 In your ~/.bashrc add the following line after the previous lines:
 <pre>
 # Overwrites PS1
+source PATH_TO_THIS_GIT_REPO/.git-prompt.sh
 source PATH_TO_THIS_GIT_REPO/bashrc_ext
 </pre>
