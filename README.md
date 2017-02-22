@@ -55,12 +55,20 @@ source PATH_TO_THIS_GIT_REPO/bashrc_ext
 </pre>
 
 ## cdp 
-In order to use the cd shorthand function, create a config file ~/.cdp.config for example:
+cdp enables you to create a config file with directory shorthands, to for example project directories. 
+By typing cdp <shorthand> (or by using tab completion) you can quickly change to the configured directory.
+
+In order to use the cd shorthand function, create a config file:
+
+<pre>
+~/.cdp.config
+</pre>
+
+This is an example cdp.config file:
 
 <pre>
 # Config file for cdp shorthand, see https://github.com/mathijsdelangen/extended_bashrc
 # Shorthands are only reloaded when bash is reloaded!
-declare -A project_paths
 
 # Do not use ~, use $HOME instead
 project_paths["home"]="$HOME"
@@ -72,4 +80,5 @@ project_paths["dsd-n"]="$HOME/projects/TKT6475/FCSD3A150071/Rxx/Prg/okkhen/work"
 project_paths["avidis"]="/data/projects/avidis/"
 project_paths["pors"]="/data/projects/ic/okkhen/"
 </pre>
+
 

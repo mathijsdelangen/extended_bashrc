@@ -24,12 +24,13 @@ function cd () {
 }
 
 
-FILE="${HOME}/.cdp.config"
-if [ -f $FILE ]; then
-    # (Re)load config file
+declare -A project_paths
+CDP_CONFIG_FILE="${HOME}/.cdp.config"
+if [ -f $CDP_CONFIG_FILE ]; then
+    # Load the cdp.config file
     source ~/.cdp.config
 else
-    declare -A project_paths
+    # Load a default setting
     project_paths["home"]="$HOME"
 fi
 
@@ -43,6 +44,10 @@ function get_project_path_keys() {
 }
 
 function cdp() {
+	if [ ! -f $CDP_CONFIG_FILE ]; then
+		echo "You do not have a configuration file: ~/.cdp-config"
+	fi
+
 	if [[ $# -eq 0 ]] ; then
 		echo "Pass one of the project shorthands as first argument"
 		for key in "${!project_paths[@]}"; do
