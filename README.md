@@ -1,4 +1,5 @@
 # extended_bashrc
+* Git branch
 This bashrc shows on which repo I am working (and at which branch).
 
 To use this extension, run the following:
@@ -52,3 +53,23 @@ In your ~/.bashrc add the following line after the previous lines:
 # Overwrites PS1
 source PATH_TO_THIS_GIT_REPO/bashrc_ext
 </pre>
+
+* cdp 
+In order to use the cd shorthand function, create a config file ~/.cdp.config for example:
+
+<pre>
+# Config file for cdp shorthand, see https://github.com/mathijsdelangen/extended_bashrc
+# Shorthands are only reloaded when bash is reloaded!
+declare -A project_paths
+
+# Do not use ~, use $HOME instead
+project_paths["home"]="$HOME"
+project_paths["fms"]="/data/projects/agvsol/okkhen/prg/fms/work"
+project_paths["fms-n"]="$HOME/projects/OP6996/AGVSOL151428/Rxx"
+project_paths["fmsdoc"]="/data/projects/agvsol/okkhen/docs/fms/work"
+project_paths["dsd"]="/data/projects/dsd3a/okkhen/work"
+project_paths["dsd-n"]="$HOME/projects/TKT6475/FCSD3A150071/Rxx/Prg/okkhen/work"
+project_paths["avidis"]="/data/projects/avidis/"
+project_paths["pors"]="/data/projects/ic/okkhen/"
+</pre>
+
