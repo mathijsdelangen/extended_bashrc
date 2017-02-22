@@ -1,5 +1,5 @@
 # extended_bashrc
-* Git branch
+## Git branch
 This bashrc shows on which repo I am working (and at which branch).
 
 To use this extension, run the following:
@@ -54,7 +54,7 @@ In your ~/.bashrc add the following line after the previous lines:
 source PATH_TO_THIS_GIT_REPO/bashrc_ext
 </pre>
 
-* cdp 
+## cdp 
 In order to use the cd shorthand function, create a config file ~/.cdp.config for example:
 
 <pre>
