@@ -22,3 +22,53 @@ function cd () {
    builtin cd "${@:1:$n-1}" $(sed -e$e -e$e -e$e <<< "${!n}");
  fi
 }
+
+
+declare -A project_paths
+CDP_CONFIG_FILE="${HOME}/.cdp.config"
+if [ -f $CDP_CONFIG_FILE ]; then
+    # Load the cdp.config file
+    source ~/.cdp.config
+else
+    # Load a default setting
+    project_paths["home"]="$HOME"
+fi
+
+# cdp - change directory to map of paths
+function get_project_path_keys() {
+	keys=""
+	for key in "${!project_paths[@]}"; do
+		keys="$keys $key"
+	done
+	echo $keys
+}
+
+function cdp() {
+	if [ ! -f $CDP_CONFIG_FILE ]; then
+		echo "You do not have a configuration file: ~/.cdp-config"
+	fi
+
+	if [[ $# -eq 0 ]] ; then
+		echo "Pass one of the project shorthands as first argument"
+		for key in "${!project_paths[@]}"; do
+			echo "  $key"
+		done
+		return 1
+	fi
+	
+	base_path=${project_paths["$1"]}
+	if [ "$base_path" = "" ]; then
+		echo "No path defined for '$1'"
+		return 1;
+	fi
+	
+	expanded_path=$(readlink -f "$base_path")
+	if [[ $# -eq 1 ]] ; then
+		cd $expanded_path
+	else
+		cd $expanded_path/${@:2}
+	fi
+}
+
+_cdp_options=$(get_project_path_keys)
+complete -W "${_cdp_options}" -o dirnames 'cdp'

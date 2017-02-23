@@ -1,4 +1,5 @@
 # extended_bashrc
+## Git branch
 This bashrc shows on which repo I am working (and at which branch).
 
 To use this extension, run the following:
@@ -56,3 +57,28 @@ In your ~/.bashrc add the following line after the previous lines:
 source ~/.git-prompt.sh
 source ~/bashrc_ext
 </pre>
+
+## cdp 
+cdp enables you to create a config file with directory shorthands, to for example project directories. 
+By typing cdp <shorthand> (or by using tab completion) you can quickly change to the configured directory.
+
+In order to use the cd shorthand function, create a config file:
+
+<pre>
+~/.cdp.config
+</pre>
+
+This is an example cdp.config file:
+
+<pre>
+# Config file for cdp shorthand, see https://github.com/mathijsdelangen/extended_bashrc
+# Shorthands are only reloaded when bash is reloaded!
+
+# Do not use ~, use $HOME instead
+project_paths["home"]="$HOME"
+project_paths["project1"]="/data/projects/project1/work"
+project_paths["project1-n"]="$HOME/projects/company3/project1/Rxx"
+project_paths["paard-docs"]="/data/projects/paard/docs/work"
+</pre>
+
+
