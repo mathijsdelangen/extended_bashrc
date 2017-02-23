@@ -72,13 +72,9 @@ This is an example cdp.config file:
 
 # Do not use ~, use $HOME instead
 project_paths["home"]="$HOME"
-project_paths["fms"]="/data/projects/agvsol/okkhen/prg/fms/work"
-project_paths["fms-n"]="$HOME/projects/OP6996/AGVSOL151428/Rxx"
-project_paths["fmsdoc"]="/data/projects/agvsol/okkhen/docs/fms/work"
-project_paths["dsd"]="/data/projects/dsd3a/okkhen/work"
-project_paths["dsd-n"]="$HOME/projects/TKT6475/FCSD3A150071/Rxx/Prg/okkhen/work"
-project_paths["avidis"]="/data/projects/avidis/"
-project_paths["pors"]="/data/projects/ic/okkhen/"
+project_paths["project1"]="/data/projects/project1/work"
+project_paths["project1-n"]="$HOME/projects/company3/project1/Rxx"
+project_paths["paard-docs"]="/data/projects/paard/docs/work"
 </pre>
 
 
