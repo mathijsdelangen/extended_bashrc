@@ -87,7 +87,7 @@ _complete_cdp()
 	#echo prev: $3
 	if [ "$COMP_CWORD" -le "1" ] ; then
 #		echo Options: $_cdp_options
-		COMPREPLY=( "$(compgen -W $(get_project_path_keys) -- $cur)" )
+		COMPREPLY=( $(compgen -W "$(get_project_path_keys)" -- $cur) )
 	else
 
 		local project=${COMP_WORDS[1]}
@@ -102,6 +102,6 @@ _complete_cdp()
 }
 
 #complete -F _cdp_complete cdp
-complete -o nospace -o dirnames -F _complete_cdp cdp
+complete -o nospace -F _complete_cdp cdp
 #complete -o nospace -F _complete_cdp -- cdp
 #complete -W "$_cdp_options" cdp
