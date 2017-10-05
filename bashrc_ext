@@ -8,7 +8,19 @@ function __git_repo {
 }
 
 # Set the colors of PS1 and the name of the current repo/branch
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1 "@%s")\n\[\033[38;5;202m\]\[\033[00m\]\$ '
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1 "@%s")\n\[\033[38;5;202m\]\[\033[00m\]\$ '
+
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM=auto
+
+export GIT_PS1_SHOWCOLORHINTS=1
+
+export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
+export PROMPT_COMMAND='__git_ps1 "\n\u@\h\[\033[01;34m\]\w\[\033[00m\]" "\n\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\[\033[00m\]\$ "'
+
+
 
 ### Useful functions
 
@@ -55,13 +67,13 @@ function cdp() {
 		done
 		return 1
 	fi
-	
+
 	base_path=${project_paths["$1"]}
 	if [ "$base_path" = "" ]; then
 		echo "No path defined for '$1'"
 		return 1;
 	fi
-	
+
 	expanded_path=$(readlink -f "$base_path")
 	if [[ $# -eq 1 ]] ; then
 		cd $expanded_path
@@ -71,4 +83,25 @@ function cdp() {
 }
 
 _cdp_options=$(get_project_path_keys)
-complete -W "${_cdp_options}" -o dirnames 'cdp'
+#_cdp_complete()
+#{
+#	local cur=${COMP_WORDS[COMP_CWORD]}
+#	echo $cur
+#	echo $COMP_CWORD
+#	if [ "$COMP_CWORD" -le "1" ] ; then
+#		echo Options: $_cdp_options
+#		COMPREPLY=( $(compgen -W $(get_project_path_keys) -- $cur) )
+#	else
+#		local project=${COMP_WORDS[1]}
+#		echo Project: $project
+#		local base_path="${project_paths["$project"]}/"
+#		echo Basepaths: $base_path
+#		IFS=$'\n' 
+#		PATHS=$(ls ${base_path})
+#		tmp=( $(compgen -W "${PATHS}" -- $cur))
+#		COMPREPLY=( "${tmp[@]// /\ }" )
+#	fi
+#}
+
+#complete -F _cdp_complete cdp
+complete -W "$_cdp_options" -o dirnames cdp
