@@ -54,7 +54,6 @@ function get_project_path_keys() {
 	done
 	echo $keys
 }
-
 function cdp() {
 	if [ ! -f $CDP_CONFIG_FILE ]; then
 		echo "You do not have a configuration file: ~/.cdp-config"
@@ -75,33 +74,34 @@ function cdp() {
 	fi
 
 	expanded_path=$(readlink -f "$base_path")
-	if [[ $# -eq 1 ]] ; then
-		cd $expanded_path
-	else
-		cd $expanded_path/${@:2}
-	fi
+	[ $# == 1 ] && cd $expanded_path || cd $2
 }
 
 _cdp_options=$(get_project_path_keys)
-#_cdp_complete()
-#{
-#	local cur=${COMP_WORDS[COMP_CWORD]}
-#	echo $cur
-#	echo $COMP_CWORD
-#	if [ "$COMP_CWORD" -le "1" ] ; then
+_complete_cdp()
+{
+	cur=${COMP_WORDS[COMP_CWORD]}
+	#echo
+#	echo -en "Cur: $cur\n"
+	#echo Comp word nr: $COMP_CWORD
+	#echo prev: $3
+	if [ "$COMP_CWORD" -le "1" ] ; then
 #		echo Options: $_cdp_options
-#		COMPREPLY=( $(compgen -W $(get_project_path_keys) -- $cur) )
-#	else
-#		local project=${COMP_WORDS[1]}
-#		echo Project: $project
-#		local base_path="${project_paths["$project"]}/"
-#		echo Basepaths: $base_path
-#		IFS=$'\n' 
-#		PATHS=$(ls ${base_path})
-#		tmp=( $(compgen -W "${PATHS}" -- $cur))
-#		COMPREPLY=( "${tmp[@]// /\ }" )
-#	fi
-#}
+		COMPREPLY=( "$(compgen -W $(get_project_path_keys) -- $cur)" )
+	else
+
+		local project=${COMP_WORDS[1]}
+		#echo Project: $project
+		local base_path="${project_paths["$project"]}"
+		#echo Basepath: "${base_path}"
+
+		[ "${cur}" == "" ] && eval cur=${base_path}/${cur}
+
+		COMPREPLY=( $(compgen -S "/" -d  "$cur") )
+	fi
+}
 
 #complete -F _cdp_complete cdp
-complete -W "$_cdp_options" -o dirnames cdp
+complete -o nospace -o dirnames -F _complete_cdp cdp
+#complete -o nospace -F _complete_cdp -- cdp
+#complete -W "$_cdp_options" cdp
